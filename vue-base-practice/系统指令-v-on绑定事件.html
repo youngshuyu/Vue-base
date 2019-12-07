@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+          <!-- input只要内容改变就会触发 change只有离开焦点才会触发 -->
+       <input type="text" v-on:change="change">
+       <input type="text" @input="change">
+       <button @click="click"></button>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+// **`任务`**: 
+
+// **`input只要内容改变就会触发 change只有离开焦点才会触发`**
+
+// 1. 初始化一个Vue实例, 定义data中name  为hello world
+// 2. 添加一个 input  button , 
+// 3. 注册input值改变事件 值改变时获取 文本框内容
+// 4. 注册botton点击事件 点击按钮变时 获取当前data对象中的name值 输出 
+
+    var vm = new Vue({
+        el : '#app',
+        data : {
+            name : 'hello world',       
+        },
+        methods : {
+            change(e) {
+                console.log(e.target.value);
+                
+            },
+            click() {
+                console.log(this.name);
+                
+            }
+        }
+
+    })
+</script>
+</html>
