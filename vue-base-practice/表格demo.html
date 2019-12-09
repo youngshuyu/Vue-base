@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            #app {
+                width: 600px;
+                margin: 10px auto;
+            }
+            
+            .tb {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            .tb th {
+                background-color: #0094ff;
+                color: white;
+            }
+            
+            .tb td,
+            .tb th {
+                padding: 5px;
+                border: 1px solid black;
+                text-align: center;
+            }
+            
+            .add {
+                padding: 5px;
+                border: 1px solid black;
+                margin-bottom: 10px;
+            }
+        </style>
+</head>
+
+<body>
+    <div id="app">
+            <div class="add">
+                    品牌名称:
+                    <input type="text" v-model="inputValue">
+                    <input type="button" value="添加" @click="addItem" :disabled="!inputValue">
+                </div>
+            
+                <div class="add">
+                    品牌名称:
+                    <input type="text" placeholder="请输入搜索条件">
+                </div>
+            
+                <div>
+                    <table class="tb">
+                        <tr>
+                            <th>编号</th>
+                            <th>品牌名称</th>
+                            <th>创立时间</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr v-for="(item,index) in list">
+                            <td>{{index+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.date}}</td>
+                            <td>
+                                <a href="#" @click.prevent="delItem(index)">删除</a>
+                            </td>
+                        </tr>
+                        <tr v-if="!list.length">
+                            <td colspan="4">没有品牌数据</td>
+                        </tr>
+                    </table>
+                </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                        {name : 'XiaoMi',date : new Date()},
+                        {name : 'Apple',date : new Date()},
+                        {name : 'OnePlus',date : new Date()},
+                ],
+                inputValue : '',
+            },
+            methods: {
+                delItem(index) { //删除商品
+                    // this.list.splice(index,1);
+                    // this.list = this.list.filter(function (item,i) {
+                    //     return index != i;
+                    // })
+                    this.list = this.list.filter((item,i) => index != i)
+                },
+                addItem() {
+                    this.list.unshift({
+                        name : this.inputValue,date : new Date()
+                    })
+                    this.inputValue = '';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

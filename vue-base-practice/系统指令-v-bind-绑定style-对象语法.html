@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .default {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p :style="{fontSize,fontWeight,display : dly}" class="default">{{text}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+//         **`任务`**
+
+// 1. 实例化一个Vue实例
+// 2. 定义一个p标签 原有样式 为字体红色
+// 3. 使用v-bind绑定对象语法 将字体大小设置为48px ,加粗
+// 语法: :style="{css属性名: 变量}"
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                text : '炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫炫',
+                fontSize : '48px',
+                fontWeight : '700',
+                dly : 'inline'
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

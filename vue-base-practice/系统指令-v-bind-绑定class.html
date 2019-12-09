@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .default {
+            color: aqua;
+        }
+        .primary {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <p :class="primaryClass" class="default" >{{test}}</p> -->
+        <p :class="{primary:show}" class="default" >{{test}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                test : '我是一只快乐的小青蛙',
+                primaryClass : 'primary',
+                show : true
+            },
+            methods: {}
+        });
+    </script>
+    <script>
+//     **`任务`**
+
+// 1. 实例化一个Vue实例
+// 2. 定义一个p标签 原有class 为default 
+// 3. 使用v-bind对象语法将class变为 default primary
+
+    </script>
+</body>
+
+</html>

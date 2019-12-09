@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="nameInput">
+        <input type="text" v-model="nameInput">
+        <textarea name="" id="" cols="30" rows="10" v-model="nameTextArea"></textarea>
+        <textarea name="" id="" cols="30" rows="10" v-model="nameTextArea"></textarea>
+        <input type="checkbox" v-model="nameCheckbox" >
+        <p>{{nameCheckboxs}}</p>
+        <input type="checkbox" v-model="nameCheckboxs" value="北京">
+        <input type="checkbox" v-model="nameCheckboxs" value="上海">
+        <input type="checkbox" v-model="nameCheckboxs" value="天津">
+        
+        <p>{{nameRadio}}</p>
+        <input type="radio" v-model="nameRadio" value="man">man
+        <input type="radio" v-model="nameRadio" value="woman">woman
+
+        <p>{{nameSelect}}</p>
+        <select name="" id="" v-model="nameSelect">
+            <option value="beijing">北京</option>
+            <option value="shanghai">上海</option>
+            <option value="tianjing">天津</option>
+        </select>
+        
+    </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+//         **`任务`**:
+
+// 1. 实例化一个Vue实例
+// 2. input 绑定 属性 nameInput,实现input同步
+// 3. textarea 绑定 属性 nameTextArea 实现textarea同步 
+// 4. checkbox 绑定一个属性 nameCheckbox 实现 checkbox同步   
+// 5. 多个 checkbox绑定同一个属性 nameCheckboxs 实现 checkbox同步           北京 上海 天津
+// 6. radio 绑定属性 nameRadio 实现同步  男 女 
+// 7. select  绑定属性 nameSelect 实现同步  北京 上海 天津 
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                nameInput : '',
+                nameTextArea : '',
+                nameCheckbox : true,
+                nameCheckboxs : [],
+                nameRadio : '',
+                nameSelect : '',
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

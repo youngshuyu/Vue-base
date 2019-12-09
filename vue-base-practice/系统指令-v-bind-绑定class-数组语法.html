@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .default {
+            color: sandybrown;
+        }
+        .primary {
+            font-size: 50px;
+        }
+        .danger {
+            background-color: red;
+        }
+        .info {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p :class="[primaryClass,dangerClass,infoClass]" class="default">{{text}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                text : 'sakura最好了',
+                primaryClass : 'primary',
+                dangerClass : 'danger',
+                infoClass : 'info'
+            },
+            methods: {}
+        });
+    </script>
+    <script>
+//         **`任务`**
+
+// 1. 实例化一个Vue实例
+// 2. 定义一个p标签 原有class 为default 
+// 3. 使用v-bind数组语法将class变为 default primary danger info
+
+
+
+    </script>
+</body>
+
+</html>
