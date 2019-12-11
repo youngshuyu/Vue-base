@@ -1,0 +1,21 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "name": "Apple"
+    },
+    {
+      "id": 2,
+      "name": "XiaoMi"
+    },
+    {
+      "name": "OPPO",
+      "id": 3
+    },
+    {
+      "name": "VIVO",
+      "date": "2019-12-11T13:04:38.293Z",
+      "id": 4
+    }
+  ]
+}

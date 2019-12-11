@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{text | toUpper(3) | reverse}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 任务:实现一个过滤器,可以根据传去的索引,找到对应的字符转成大写
+
+        // ["a","b","c"].map(function(item, index){ if(index===1) { return item.toUpperCase() } return item }).join("")
+
+        // 1. 定义局部过滤器
+        // 2. 实现功能
+        // 3. 过滤器使用
+        // 4. 定义第二个过滤器,可以将传去的字符反转(扩展)
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                text : 'abcdef'
+            },
+            methods: {},
+            filters : {
+                toUpper(value,index) {
+                    return value.split('').map((item,i) => {
+                        if (index === i) {
+                            return item.toUpperCase()
+                        }
+                        return item
+                    }).join('')
+                },
+                reverse(value) {
+                    return value.split('').reverse().join('')
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

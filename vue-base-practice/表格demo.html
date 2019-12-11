@@ -34,22 +34,24 @@
                 border: 1px solid black;
                 margin-bottom: 10px;
             }
+            [v-cloak] {
+                display: none;
+            }
         </style>
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
             <div class="add">
                     品牌名称:
-                    <input type="text" v-model="inputValue">
-                    <input type="button" value="添加" @click="addItem" :disabled="!inputValue">
+                    <input type="text" v-model="inputValue" v-focus>
+                    <input type="button" value="添加" @click="addItem" :disabled="!inputValue" >
                 </div>
             
                 <div class="add">
                     品牌名称:
-                    <input type="text" placeholder="请输入搜索条件">
+                    <input type="text" placeholder="请输入搜索条件" v-model="searchValue">
                 </div>
-            
                 <div>
                     <table class="tb">
                         <tr>
@@ -58,12 +60,12 @@
                             <th>创立时间</th>
                             <th>操作</th>
                         </tr>
-                        <tr v-for="(item,index) in list">
+                        <tr v-for="(item,index) in newList">
                             <td>{{index+1}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{item.date}}</td>
+                            <td>{{item.date | transDate}}</td>
                             <td>
-                                <a href="#" @click.prevent="delItem(index)">删除</a>
+                                <a href="#" @click.prevent="delItem(item.id)">删除</a>
                             </td>
                         </tr>
                         <tr v-if="!list.length">
@@ -73,31 +75,64 @@
                 </div>
     </div>
     <script src="./vue.js"></script>
+    <script src="./moment.js"></script>
+    <script src="./axios.min.js"></script>
     <script>
+        Vue.directive("focus", {//全局
+        // inserted(dom) {
+        //   dom.focus();
+        // }
+        inserted : function(dom) {
+            dom.focus();
+        } 
+      });
         var vm = new Vue({
             el: '#app',
             data: {
-                list: [
-                        {name : 'XiaoMi',date : new Date()},
-                        {name : 'Apple',date : new Date()},
-                        {name : 'OnePlus',date : new Date()},
-                ],
+                list: [],
                 inputValue : '',
+                searchValue : '',
             },
             methods: {
                 delItem(index) { //删除商品
+                    if (confirm('您确定要删除么？')) {
                     // this.list.splice(index,1);
                     // this.list = this.list.filter(function (item,i) {
                     //     return index != i;
                     // })
-                    this.list = this.list.filter((item,i) => index != i)
+                    // this.list = this.list.filter((item,i) => index != i)
+                    axios.delete(`http://localhost:3000/brands/${index}`).then(() => {
+                        this.loadData();
+                    })
+                    }
                 },
                 addItem() {
-                    this.list.unshift({
-                        name : this.inputValue,date : new Date()
+                    axios.post("http://localhost:3000/brands",{
+                        name : this.inputValue,
+                        date : new Date()
+                    }).then(() => {
+                        this.loadData();
+                        this.inputValue = '';
                     })
-                    this.inputValue = '';
+                    
+                },
+                loadData() {
+                    axios.get("http://localhost:3000/brands").then(res => this.list = res.data)
                 }
+            },
+            filters : {
+                //转化时间过滤器
+                transDate(value) {
+                    return moment(value).format("MMMM Do YYYY")
+                }
+            },
+            computed : {
+                newList() {
+                    return this.list.filter(item => item.name.indexOf(this.searchValue) != -1)
+                }
+            },
+            mounted() {//渲染完成事件
+                this.loadData();
             }
         });
     </script>
