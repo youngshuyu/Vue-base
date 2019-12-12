@@ -60,7 +60,7 @@
                             <th>创立时间</th>
                             <th>操作</th>
                         </tr>
-                        <tr v-for="(item,index) in newList">
+                        <tr v-for="(item,index) in list">
                             <td>{{index+1}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.date | transDate}}</td>
@@ -127,12 +127,18 @@
                 }
             },
             computed : {
-                newList() {
-                    return this.list.filter(item => item.name.indexOf(this.searchValue) != -1)
-                }
+                // newList() {
+                //     return this.list.filter(item => item.name.indexOf(this.searchValue) != -1)
+                // }
             },
             mounted() {//渲染完成事件
                 this.loadData();
+            },
+            watch : {
+                searchValue : function(newValue) {
+                    axios.get(`http://localhost:3000/brands?name_like=${newValue}`).then(res => {
+                        this.list = res.data
+                    })}
             }
         });
     </script>

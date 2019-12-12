@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="#bj">北京</a>
+    <a href="#sh">上海</a>
+    <a href="#tj">天津</a>
+    <a href="#cq">重庆</a>
+    <div id="container"></div>
+    <script>
+        //         **`任务`**
+
+        // 1. 在页面上实现4个链接,北京,上海,天津,重庆
+        // 2. 实现点击4个链接时,页面上显示对应的城市名称
+        // 3. 并且刷新页面之后,上次切换的城市还在    
+        function reload() {
+            var path = location.hash.substr(1);
+            var dom = document.getElementById("container");
+            console.log(path);
+            switch (path) {
+                case 'bj':
+                    dom.innerText = '北京'
+                    break;
+                case 'sh':
+                    dom.innerText = '上海'
+                    break;
+                case 'tj':
+                    dom.innerText = '天津'
+                    break;
+                case 'cq':
+                    dom.innerText = '重庆'
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        reload(); 
+        window.onhashchange = reload;
+
+    </script>
+</body>
+
+</html>

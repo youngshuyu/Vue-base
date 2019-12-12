@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- router-link 最终会被渲染成a标签，to指定路由的跳转地址 -->
+        <router-link to="/jian">煎</router-link>
+        <router-link to="/chao">炒</router-link>
+        <router-link to="/peng">烹</router-link>
+        <router-link to="/zha">炸</router-link>
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        // * 1 实现vue-router路由
+        // * 2 设置 煎  炒   烹   炸 
+        // * 3 分别设置四个导航对应四个菜品
+        const router = new VueRouter({
+            routes :[
+            {
+                path : '/jian',
+                component : {
+                    template : `<div>煎豆腐</div>`
+                }
+            },
+            {
+                path : '/chao',
+                component : {
+                    template : `<div>西红柿炒鸡蛋</div>`
+                }
+            },
+            {
+                path : '/peng',
+                component : {
+                    template : `<div>佛跳墙</div>`
+                }
+            },
+            {
+                path : '/zha',
+                component : {
+                    template : `<div>炸鸡</div>`
+                }
+            }
+        ]})
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>
