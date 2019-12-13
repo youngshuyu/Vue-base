@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .router-link-exact-active{
+            font-size: 48px;
+        }
+        .router-link-active{
+            font-weight: 700;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/bj">北京</router-link>
+        <router-link to="/sh">上海</router-link>
+        <router-link to="/tj">天津</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        // 1. 实例化一个vue-router导航
+        // 2. 北京- 上海- 天津
+        // 3. 让当前路由的导航 字体48px  加粗 颜色红色
+
+        const router = new VueRouter({
+            routes : [
+                {
+                    path : '/bj',
+                    component : {
+                        template : `<div>这是北京</div>`
+                    }
+                },
+                {
+                    path : '/sh',
+                    component : {
+                        template : `<div>这是上海</div>`
+                    }
+                },
+                {
+                    path : '/tj',
+                    component : {
+                        template : `<div>这是天津</div>`
+                    }
+                }
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>

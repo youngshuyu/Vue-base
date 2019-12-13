@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link v-for="item in list" :to="`/food/${item}`">{{item}}</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <router-link></router-link>
+    <script>
+        // 定义一个数组list["红烧肉","北京烤鸭","卤煮火烧"].渲染生成导航,实现点击每个导航时,指向同一个组件,并显示点击的导航名称
+        const router = new VueRouter({
+            routes : [
+                {
+                    path : '/food/:foodname',
+                    component : {
+                        template : `<div>夜宵吃{{$route.params.foodname}}</div>`,
+                                              
+                    }
+                }
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list : ["红烧肉","北京烤鸭","卤煮火烧"]
+            },
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>

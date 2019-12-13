@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/rd">热点</router-link>
+        <router-link to="/jy">教育</router-link>
+        <router-link to="/sh">社会</router-link>
+        <router-link to="/yy">音乐</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        // 1. 实现一个嵌套路由   
+        // 2. 第一级路由为 热点 教育 社会 音乐
+        // 3. 音乐下 二级路由为 流行.古典.爵士
+
+        const router = new VueRouter({
+            routes : [
+                {
+                    path : '/rd',
+                    component : {
+                        template : `<div>热点</div>`
+                    }
+                },
+                {
+                    path : '/jy',
+                    component : {
+                        template : `<div>教育</div>`
+                    }
+                },
+                {
+                    path : '/sh',
+                    component : {
+                        template : `<div>社会</div>`
+                    }
+                },
+                {
+                    path : '/yy',
+                    component : {
+                        template : `<div>
+                                <router-link to="/yy/lx">流行</router-link>
+                                <router-link to="/yy/gd">古典</router-link>
+                                <router-link to="/yy/js">爵士</router-link>
+                                <router-view></router-view>
+                            </div>`
+                    },
+                    children : [//二级路由表
+                        {
+                           path : 'lx',
+                           component : {
+                               template : `<div>流行</div>`
+                           } 
+                        },
+                        {
+                           path : 'gd',
+                           component : {
+                               template : `<div>古典</div>`
+                           } 
+                        },
+                        {
+                           path : 'js',
+                           component : {
+                               template : `<div>爵士</div>`
+                           } 
+                        }
+                    ]
+                },
+                
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>

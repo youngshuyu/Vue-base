@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/bj">北京</router-link>
+        <router-link to="/sh">上海</router-link>
+        <router-link to="/tj">天津</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        // 1. 导航为 bj => 北京  sh => 上海 tj => 天津
+        // 2. 实现当跳转到天津时 直接重定向到北京
+        const router = new VueRouter({
+            routes : [
+                {
+                    path : '/bj',
+                    component : {
+                        template : `<div>北京</div>`
+                    }
+                },
+                {
+                    path : '/sh',
+                    component : {
+                        template : `<div>上海</div>`
+                    }
+                },
+                {
+                    redirect : '/bj',//重定向到北京
+                    path : '/tj',
+                    component : {
+                        template : `<div>天津</div>`
+                    }
+                }
+            ]
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>

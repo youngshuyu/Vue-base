@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        // 1. 实例化一个导航路由
+        // 2. 四个页面为A,B,C,D 
+        // 3. A页面中有一个按钮，点击跳到B页面
+        // 4. B页面有一个按钮，点击跳转到C页面，但是**`不追加历史纪录`**
+        // 5. C页面有一个按钮，点击跳到D页面，
+        // 6. D页面有一个按钮，点击直接回到A页面，而且页面**`不能再进行返回`**(之前的回退记录)
+        const router = new VueRouter({
+            routes : [
+                {
+                    path : '/',
+                    redirect : '/A'
+                },
+                {
+                    path : '/A',
+                    component : {
+                        template : `<div>这是A页面<button @click="goB">跳转到B页面</button></div>`,
+                        methods : {
+                            goB() {
+                                this.$router.push('/B')
+                            }
+                        }
+                    }
+                },
+                {
+                    path : '/B',
+                    component : {
+                        template : `<div>这是B页面<button @click="goC">跳转到C页面</button></div>`,
+                        methods : {
+                            goC() {
+                                this.$router.replace('/C')
+                            }
+                        }
+                    }
+                },
+                {
+                    path : '/C',
+                    component : {
+                        template : `<div>这是C页面<button @click="goD">跳转到D页面</button></div>`,
+                        methods : {
+                            goD() {
+                                this.$router.push('/D')
+                            }
+                        }
+                    }
+                },
+                {
+                    path : '/D',
+                    component : {
+                        template : `<div>这是D页面<button @click="goA">跳转到A页面</button></div>`,
+                        methods : {
+                            goA() {
+                                this.$router.go(-2)
+                            }
+                        }
+                    }
+                },
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>
