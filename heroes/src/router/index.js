@@ -18,7 +18,7 @@ export default new VueRouter({
         {
             path : '/hero',
             component : secondRouter,
-            children : [
+            children : [//二级路由
                 {
                     path : '',
                     component : heroList,
