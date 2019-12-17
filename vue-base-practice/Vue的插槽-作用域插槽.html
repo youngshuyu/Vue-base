@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <p style="color: red;font-size: 48px;" slot="header" slot-scope="obj">{{obj.name1}}</p>
+            <ul slot="body" slot-scope="obj">
+                <li v-for="item in obj.list">{{item}}</li>
+            </ul>
+        </child>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 1. 定义一个子组件 组件中的list数据为["北京", "上海", "天津"]  name数据为 Hello world
+        // 2. 定义具名插槽 header 和 body
+        // 3. header插槽中读取 子组件中的name1  颜色为红色 字体大小48px
+        // 4. body插槽中遍历 子组件中的list
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name : 'sakura'
+            },
+            methods: {},
+            components : {
+                "child" : {
+                    template : `<div>
+                    <slot name="header" v-bind:name1="name"></slot>
+                    <slot name="body" :list="list"></slot></div>`,
+                    data () {
+                        return {
+                            list : ["北京", "上海", "天津"],
+                            name : 'Hello world'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

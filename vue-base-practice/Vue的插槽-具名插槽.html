@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-test>
+            <div style="background-color: skyblue;height: 20px;" slot="header"></div>
+            <p style="color: #fff;" slot="body">我是body</p>
+            <p style="color: greenyellow;" slot="footer">我是footer</p>
+        </el-test>
+        <div style="height: 30px;"></div>
+        <el-test>
+            <div style="background-color: yellow;height: 40px;" slot="header"></div>
+            <p style="color: yellowgreen;" slot="body">我是body</p>
+            <p style="color: #fff;" slot="footer">我是footer</p>
+        </el-test>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 1. 实现一个组件  背景色为红色
+        // 2. 定义header  body  footer 插槽
+        // 3. 实现 第一个组件实例 header 高 20px  背景色 蓝色    body内容为 白色字体的 我是body  footer为 绿色字体的 我是footer
+        // 4. 第二个实例  header  高 40px  背景色  黄色   body内容为  绿色字体的 我是body  footer为白色的字体的 我是footer
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components : {
+                "el-test" : {
+                    template : `
+                    <div style="background:red">
+                        <slot name="header">123</slot>
+                        <slot name="body"></slot>
+                        <slot name="footer"></slot>
+                    </div>`
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

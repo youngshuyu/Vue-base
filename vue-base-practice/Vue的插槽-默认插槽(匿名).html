@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-test>aaa</el-test>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 1. 定义一个组件 里面静态内容为
+        // 2. * 第一行   这个技术上实现不了
+        //     * 第二行   在我电脑上是正常的啊
+        //         * 第三行   这个问题以前就有
+        // 3. 使用插槽技术 实现 显示的内容为
+        //     - 第一行   这个技术上aaa实现不了
+        //         - 第二行   在我电脑上aaa是正常的啊
+        //             - 第三行   这个问题aaa以前就有
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components : {
+                "el-test" : {
+                    template : `<div>
+                    <p>这个技术上<slot></slot>实现不了</p>
+                    <p>在我电脑上<slot></slot>是正常的啊</p>
+                    <p>这个问题<slot></slot>以前就有</p>
+                    </div>`
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>
